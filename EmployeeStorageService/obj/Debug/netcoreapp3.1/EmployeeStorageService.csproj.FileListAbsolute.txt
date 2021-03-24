@@ -7,8 +7,6 @@ C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\EmployeeStorageService.dll
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\EmployeeStorageService.pdb
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\Humanizer.dll
-C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
-C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\System.Web.Http.dll
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Server.Kestrel.Https.dll
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
@@ -36,7 +34,6 @@ C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.BrowserLink.dll
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\ServiceStack.Text.dll
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
@@ -57,7 +54,6 @@ C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\obj\Debug\netcoreapp3.1\EmployeeStorageService.csprojAssemblyReference.cache
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\obj\Debug\netcoreapp3.1\EmployeeStorageService.AssemblyInfoInputs.cache
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\obj\Debug\netcoreapp3.1\EmployeeStorageService.AssemblyInfo.cs
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\obj\Debug\netcoreapp3.1\EmployeeStorageService.csproj.CoreCompileInputs.cache
@@ -70,3 +66,4 @@ C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\obj\Debug\netcoreapp3
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\obj\Debug\netcoreapp3.1\EmployeeStorageService.dll
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\obj\Debug\netcoreapp3.1\EmployeeStorageService.pdb
 C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\obj\Debug\netcoreapp3.1\EmployeeStorageService.genruntimeconfig.cache
+C:\Users\S4\Desktop\EBF-Coding_Test\EmployeeStorageService\obj\Debug\netcoreapp3.1\EmployeeStorageService.csprojAssemblyReference.cache

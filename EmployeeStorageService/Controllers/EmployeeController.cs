@@ -28,11 +28,11 @@ namespace EmployeeStorageService.Controllers
         ///////////////////////////////////////////
         /*
             View a single Employee
-            /api/getEmployee/1 
+            /api/GetEmployee/1 
                     return the employee with an id of 1
         */
-        [HttpGet("getEmployee/{id}")]
-        public object getEmployee(int id)
+        [HttpGet("GetEmployee/{id}")]
+        public object GetEmployee(int id)
         {
             Employee emp = _db.Employee.Find(id);
 
@@ -49,11 +49,11 @@ namespace EmployeeStorageService.Controllers
         ///////////////////////////////////////////
         /*
             View all employees    
-            /api/getAll
+            /api/GetAllEmployees
                     return all of the employees in the database
         */
-        [HttpGet("getAll")]
-        public object getAllEmployees()
+        [HttpGet("GetAllEmployees")]
+        public object GetAllEmployees()
         {
             List<Employee> empList = _db.Employee.Select(e => new Employee
             {
@@ -77,15 +77,15 @@ namespace EmployeeStorageService.Controllers
             }
 
         }
-    
+
         ///////////////////////////////////////////
         /*
             Post a single Employee    
             /api/addEmployee
                     add a new employee to the database
         */
-        [HttpPost("addEmployee")]
-        public object addEmployee([FromBody] Employee employee)
+        [HttpPost("AddEmployee")]
+        public object AddEmployee([FromBody] Employee employee)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace EmployeeStorageService.Controllers
                 _db.SaveChanges();
                 return employee;
             }
-            catch (Exception e)
+            catch //(Exception e)
             {
                 //The error occured, return the full error to the frontend
 
@@ -108,8 +108,8 @@ namespace EmployeeStorageService.Controllers
             /api/updateEmployee/1
                     update an employee in the database, using his EmployeeId
         */
-        [HttpPut("updateEmployee/{id}")]
-        public object updateFullEmployee([FromBody] Employee employee, int id)
+        [HttpPut("UpdateEmployee/{id}")]
+        public object UpdateFullEmployee([FromBody] Employee employee, int id)
         {
             employee.EmployeeId = id;
 
@@ -125,8 +125,8 @@ namespace EmployeeStorageService.Controllers
             /api/deleteEmployee/1
                     delete an employee in the database, using his EmployeeId
         */
-        [HttpDelete("deleteEmployee/{id}")]
-        public object deleteEmployee(int id)
+        [HttpDelete("DeleteEmployee/{id}")]
+        public object DeleteEmployee(int id)
         {
             Employee emp = _db.Employee.Find(id);
 
@@ -143,12 +143,74 @@ namespace EmployeeStorageService.Controllers
 
         }
 
-        [HttpGet("getCompanyAverageSalary/{id}")]
-        public object getCompanyAverageSalary(int id)
+        ///////////////////////////////////////////
+        /*
+            Find the average salary for an employee per company
+            /api/GetCompanyAverageSalary/1
+                    find all employees of a certain company and calculate the average salary
+        */
+        [HttpGet("GetCompanyAverageSalary/{id}")]
+        public object GetCompanyAverageSalary(int id)
         {
-            var emps = _db.Employee.FromSqlRaw("SELECT * FROM dbo.Employee").ToList();
-            return emps;
+
+            Company company = _db.Company.Find(id);
+
+            if (company != null)
+            {
+                List<Employee> empList = _db.Employee.Where(i => i.CompanyId == id).Select(e => new Employee
+                {
+                    EmployeeId = e.EmployeeId,
+                    Name = e.Name,
+                    Surname = e.Surname,
+                    Email = e.Email,
+                    Address = e.Address,
+                    Salary = e.Salary,
+                    CompanyId = e.CompanyId
+                }).ToList();
+
+                if (empList.Count > 0)
+                {
+                    var avg = empList.Average(x => x.Salary);
+                    return avg;
+                }
+                else
+                {
+                    return BadRequest("The company with id " + id + " does not have any employees");
+                }
+
+            }
+            else
+            {
+                return BadRequest("There is no company that was found with the company id of " + id);
+            }
+
         }
 
+        ///////////////////////////////////////////
+        /*
+            View all companies    
+            /api/GetAll
+                    return all of the employees in the database
+        */
+        [HttpGet("GetAllCompanies")]
+        public object GetAllCompanies()
+        {
+            List<Company> compList = _db.Company.Select(c => new Company
+            {
+                CompanyId = c.CompanyId,
+                Name = c.Name
+            }).ToList();
+
+
+            if (compList.Count() > 0)
+            {
+                return compList;
+            }
+            else
+            {
+                return BadRequest("There were no companies found");
+            }
+
+        }
     }
 }
