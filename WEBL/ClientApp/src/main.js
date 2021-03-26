@@ -15,6 +15,6 @@ var providers = [
 if (environment_1.environment.production) {
     core_1.enableProdMode();
 }
-platform_browser_dynamic_1.platformBrowserDynamic(providers).bootstrapModule(app_module_1.default)
+platform_browser_dynamic_1.platformBrowserDynamic(providers).bootstrapModule(app_module_1.AppModule)
     .catch(function (err) { return console.log(err); });
 //# sourceMappingURL=main.js.map
