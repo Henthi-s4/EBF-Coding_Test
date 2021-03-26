@@ -14,15 +14,15 @@ export class AppComponent implements OnInit {
   companyList;
   salary;
 
-  newEmployee: Employee = {
-    employeeId: 12,
-    name: 'John',
-    surname: 'Doe',
-    email: 'john@test.com',
-    address: '25 Mystery Lane',
-    salary: 19000,
-    companyId: 1
-  };
+  //newEmployee: Employee = {
+  //  employeeId: 12,
+  //  name: 'John',
+  //  surname: 'Doe',
+  //  email: 'john@test.com',
+  //  address: '25 Mystery Lane',
+  //  salary: 19000,
+  //  companyId: 1
+  //};
 
   newCompany: Company = {
     companyId: 2,
@@ -75,11 +75,18 @@ export class AppComponent implements OnInit {
     //});
 
     //Show Average Salary For A Specific Company
-    this.dataService.getCompanyAverageSalary(this.newCompany.companyId).subscribe(data => {
-      this.salary = data;
-      console.log('The average salary is: ');
-      console.log(this.salary);
-    });
+    //this.dataService.getCompanyAverageSalary(this.newCompany.companyId).subscribe(data => {
+    //  this.salary = data;
+    //  console.log('The average salary is: ');
+    //  console.log(this.salary);
+    //});
+
+    //Find all employees of a specific company
+    //this.dataService.getAllEmployeesForCompany(this.newCompany.companyId).subscribe(data => {
+    //  this.companyList = data;
+    //  console.log('The list of employees for company ' + this.newCompany.name);
+    //  console.log(this.companyList);
+    //});
 
   }
 

@@ -76,6 +76,38 @@ namespace WEBL.Controllers
 
         ///////////////////////////////////////////
         /*
+            View all employees of a specific company    
+            /api/getAllEmployeesForCompany
+                    return all of the employees in the database lnked to a specific company
+        */
+        [HttpGet("getAllEmployeesForCompany")]
+        public object getAllEmployeesForCompany(int companyId)
+        {
+            List<Employee> empList = _db.Employee.Where(i => i.CompanyId == companyId).Select(e => new Employee
+            {
+                EmployeeId = e.EmployeeId,
+                Name = e.Name,
+                Surname = e.Surname,
+                Email = e.Email,
+                Address = e.Address,
+                Salary = e.Salary,
+                CompanyId = e.CompanyId
+            }).ToList();
+
+
+            if (empList.Count() > 0)
+            {
+                return empList;
+            }
+            else
+            {
+                return BadRequest("There were no employees found");
+            }
+
+        }
+
+        ///////////////////////////////////////////
+        /*
             Post a single Employee    
             /api/addEmployee
                     add a new employee to the database

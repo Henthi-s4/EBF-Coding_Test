@@ -1,0 +1,8 @@
+<a style="cursor: pointer"
+   class="list-group-item clearfix"
+   (click)="displayEmployees()">
+  <div class="pull-left">
+    <h1 class="list-group-item-heading">{{ company.companyId }}  {{ company.name }}</h1>
+    <p class="list-group-item-heading">Average Salary: {{ salary | currency }}</p>
+  </div>
+</a>

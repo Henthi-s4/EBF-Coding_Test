@@ -114,4 +114,17 @@ export class DataService {
       return data;
     }));
   }
+
+  ///////////////////////////////////////////
+  /*
+      Find the average salary for an employee per company
+      /api/getCompanyAverageSalary
+              find all employees of a certain company and calculate the average salary
+  */
+  getAllEmployeesForCompany(companyId: number) {
+    return this.http.get<any>(this.baseUrl + 'api/getAllEmployeesForCompany' + '?companyId=' + companyId).pipe(map(data => {
+      return data;
+    }));
+  }
+
 }
