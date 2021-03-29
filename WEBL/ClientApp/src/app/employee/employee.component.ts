@@ -17,12 +17,6 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit() {
 
-    //Show All Companies
-    this.dataService.getAllCompanies().subscribe(data => {
-      this.companyList = data;
-      //console.log('List of all Companies');
-      //console.log(this.companyList);
-    });
 
   }
 

@@ -1,5 +1,11 @@
 <div class="row pull-right">
   <div class="col-xs-15">
+    <button class="btn btn-success"
+            (click)="addNewEmployee()">
+      Add New Employee
+    </button>
+    <br />
+    <br />
     <app-employee *ngFor="let emp of employeeList"
                   [employee]="emp">
     </app-employee>

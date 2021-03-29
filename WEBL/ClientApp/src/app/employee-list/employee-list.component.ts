@@ -18,9 +18,11 @@ export class EmployeeListComponent implements OnInit {
     //Show All Employees
     this.dataService.getAllEmployees().subscribe(data => {
       this.employeeList = data;
-      //console.log('List of all Employees');
-      //console.log(this.employeeList);
     });
+
+  }
+
+  addNewEmployee() {
 
   }
 
