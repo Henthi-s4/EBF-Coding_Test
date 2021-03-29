@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../../../../Models/employee.model';
 import { DataService } from '../data.service';
+import { DxPopupModule, DxButtonModule, DxTemplateModule } from 'devextreme-angular';
+import { Company } from '../../../../Models/company.model';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-list',
@@ -9,7 +12,14 @@ import { DataService } from '../data.service';
 })
 export class EmployeeListComponent implements OnInit {
 
+  message;
+
   employeeList: Employee[];
+  popupVisible = false;
+  currentEmployee: Employee;
+  companyList: Company[];
+
+  addEmployeeForm: FormGroup;
 
   constructor(private dataService: DataService) { }
 
@@ -20,10 +30,54 @@ export class EmployeeListComponent implements OnInit {
       this.employeeList = data;
     });
 
+    //Find All Companies
+    this.dataService.getAllCompanies().subscribe(data => {
+      this.companyList = data;
+    });
+
+    //Set up the form to add new Employee
+    this.addEmployeeForm = new FormGroup({
+      'name': new FormControl(),
+      'surname': new FormControl(),
+      'email': new FormControl(),
+      'homeAddress': new FormControl(),
+      'salary': new FormControl(),
+      'companyId': new FormControl(),
+    });
+
   }
 
+  //when the add new employee button is clicked
   addNewEmployee() {
+    this.popupVisible = true;
+    console.log(this.companyList);
+  }
+
+  //when the user submits a new employee to be added
+  submitEmployee() {
+
+    //create the new employee that needs to be added
+    this.currentEmployee = {
+      employeeId: 0,
+      name: this.addEmployeeForm.value.name,
+      surname: this.addEmployeeForm.value.surname,
+      email: this.addEmployeeForm.value.email,
+      address: this.addEmployeeForm.value.homeAddress,
+      salary: this.addEmployeeForm.value.salary,
+      companyId: +this.addEmployeeForm.value.companyId
+    };
+
+    this.dataService.addEmployee(this.currentEmployee).subscribe(data => {
+      this.message = data;
+      console.log('Below is the actual message');
+      console.log(this.message);
+    });
+
+    this.addEmployeeForm.reset();
+    this.popupVisible = false;
 
   }
 
 }
+
+

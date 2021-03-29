@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -13,6 +13,10 @@ import { CompanyComponent } from './company/company.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { CompanyListComponent } from './company-list/company-list.component';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxPopupModule } from 'devextreme-angular/ui/popup';
+import { DxTemplateModule } from 'devextreme-angular/core';
+import { DxCheckBoxModule, DxFormModule, DxNumberBoxModule, DxSelectBoxModule } from 'devextreme-angular';
 
 
 @NgModule({
@@ -25,12 +29,22 @@ import { CompanyListComponent } from './company-list/company-list.component';
     CompanyComponent,
     EmployeeListComponent,
     EmployeeComponent,
-    CompanyListComponent
+    CompanyListComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    BrowserModule,
+    DxPopupModule,
+    DxButtonModule,
+    DxTemplateModule,
+    ReactiveFormsModule,
+    BrowserModule,
+    DxCheckBoxModule,
+    DxSelectBoxModule,
+    DxNumberBoxModule,
+    DxFormModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },

@@ -18,8 +18,6 @@ export class CompanyListComponent implements OnInit {
     //Find All Companies
     this.dataService.getAllCompanies().subscribe(data => {
       this.companyList = data;
-      //console.log('List of all Companies');
-      //console.log(this.companyList);
     });
   }
 

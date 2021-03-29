@@ -19,7 +19,7 @@ export class DataService {
   /*
       View all employees
       /api/getAllEmployees
-              return the employee with an id of 1
+              return the employee
   */
   getAllEmployees() {
 
@@ -96,8 +96,6 @@ export class DataService {
   getAllCompanies() {
 
     return this.http.get<any>(this.baseUrl + 'api/getAllCompanies').pipe(map(data => {
-      if (data) {
-      }
       return data;
     }));
 

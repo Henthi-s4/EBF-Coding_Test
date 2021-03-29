@@ -1,10 +1,54 @@
 <a style="cursor: pointer"
    class="list-group-item clearfix">
   <div class="pull-left">
-    <p class="list-group-item-heading">{{ employee.employeeId }}.  {{ employee.name }}  {{ employee.surname }}</p>
-    <p class="list-group-item-heading">Email Address: {{ employee.email }}</p>
-    <p class="list-group-item-heading">House Address: {{ employee.address }}</p>
-    <p class="list-group-item-heading">Salary: {{ employee.salary | currency }}</p>
-    
+    <p class="list-group-item-heading">{{ employee.employeeId }}.  {{ employee.name }}  {{ employee.surname }} | Salary: {{ employee.salary | currency }}</p>
+    <p class="list-group-item-heading">Address: {{ employee.address }} | Email: {{ employee.email }}</p>
+
+    <dx-button class="button-primary"
+               (click)="updateNewEmployee()"
+               text="Update"
+               style="margin: 4px">
+    </dx-button>
+    <button type="button"
+            class="btn btn-danger"
+            style="margin: 4px">
+      Delete
+    </button>
   </div>
 </a>
+
+<dx-popup [width]="800"
+          [height]="500"
+          [showTitle]="true"
+          title="Add New Employee"
+          [dragEnabled]="false"
+          [closeOnOutsideClick]="true"
+          [(visible)]="popupVisible">
+
+  <div id="updateEmployeeForm">
+
+    <dx-form id="form"
+             [formData]="employee"
+             [labelLocation]="labelLocation"
+             [minColWidth]="minColWidth"
+             [colCount]="colCount"
+             [width]="width">
+
+      <dxi-item dataField="comanpyId" editorType="dxSelectBox" [editorOptions]="{ items: companyNameList, searchEnabled: true, value: '' }">
+        <dxi-validation-rule type="required" message="Position is required"></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item dataField="employeeId" [editorOptions]="{ disabled: true }"></dxi-item>
+      <dxi-item dataField="name" [editorOptions]="{ disabled: false }">
+        <dxi-validation-rule type="required" message="Name is required"></dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="surname" [editorOptions]="{ disabled: false }"></dxi-item>
+      <dxi-item dataField="email" [editorOptions]="{ disabled: false }"></dxi-item>
+      <dxi-item dataField="address" [editorOptions]="{ disabled: false }"></dxi-item>
+      <dxi-item dataField="salary" [editorOptions]="{ disabled: false }"></dxi-item>
+
+    </dx-form>
+
+  </div>
+
+</dx-popup>

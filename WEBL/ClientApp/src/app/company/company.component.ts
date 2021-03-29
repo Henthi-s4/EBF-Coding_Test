@@ -20,8 +20,6 @@ export class CompanyComponent implements OnInit {
     //Show Average Salary For A Specific Company
     this.dataService.getCompanyAverageSalary(this.company.companyId).subscribe(data => {
       this.salary = data;
-      //console.log('The average salary is: ');
-      //console.log(this.salary);
     });
 
   }
