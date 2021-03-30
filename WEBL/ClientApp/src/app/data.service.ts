@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { EventEmitter, Inject, Injectable, Output } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Company } from '../../../Models/company.model';
 
@@ -10,6 +10,7 @@ export class DataService {
 
   private baseUrl: string;
   employeeList;
+  @Output() emitDelete = new EventEmitter();
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.baseUrl = baseUrl;
@@ -82,6 +83,7 @@ export class DataService {
   deleteEmployee(employeeId) {
 
     return this.http.delete<any>(this.baseUrl + 'api/deleteEmployee' + '?employeeId=' + employeeId).pipe(map(data => {
+      this.emitDelete.emit('deleted');
       return data;
     }));
 

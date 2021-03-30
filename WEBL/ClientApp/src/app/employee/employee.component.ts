@@ -4,7 +4,7 @@ import { Company } from '../../../../Models/company.model';
 import { Employee } from '../../../../Models/employee.model';
 import { DataService } from '../data.service';
 import notify from 'devextreme/ui/notify';
-import { DxCheckBoxModule, DxSelectBoxModule, DxNumberBoxModule, DxFormModule, DxButtonModule, DxFormComponent} from 'devextreme-angular';
+import { DxCheckBoxModule, DxSelectBoxModule, DxNumberBoxModule, DxFormModule, DxButtonModule, DxFormComponent } from 'devextreme-angular';
 
 @Component({
   selector: 'app-employee',
@@ -17,6 +17,7 @@ export class EmployeeComponent implements OnInit {
   companyList: Company[];
   companyNameList: string[] = [];
   companyName: string;
+  employeeList: Employee[];
 
   updateEmployeeForm: DxFormComponent;
   popupVisible = false;
@@ -93,5 +94,23 @@ export class EmployeeComponent implements OnInit {
     });
 
   }
+
+  /*
+    Ask user for confirmation of deletion of employee
+   */
+  deleteConfirmation(name: string, surname: string) {
+    if (confirm("Are you sure to delete " + name + ' ' + surname)) {
+      //Delete Existing Employee
+      this.dataService.deleteEmployee(this.employee.employeeId).subscribe(data => {
+        this.message = data;
+        console.log(this.message);
+          //Show All Employees
+          this.dataService.getAllEmployees().subscribe(data => {
+            this.employeeList = data;
+          });
+      });
+    }
+  }
+
 
 }

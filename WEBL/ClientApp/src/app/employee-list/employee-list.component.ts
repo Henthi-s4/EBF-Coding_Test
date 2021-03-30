@@ -25,10 +25,7 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit() {
 
-    //Show All Employees
-    this.dataService.getAllEmployees().subscribe(data => {
-      this.employeeList = data;
-    });
+    this.getAllEmployees();
 
     //Find All Companies
     this.dataService.getAllCompanies().subscribe(data => {
@@ -45,6 +42,20 @@ export class EmployeeListComponent implements OnInit {
       'companyId': new FormControl(),
     });
 
+    //subscribe to the emitDelete event emitter
+    this.dataService.emitDelete.subscribe(data => {
+      this.message = data;
+      console.log(this.message);
+      this.getAllEmployees();
+    });
+
+  }
+
+  getAllEmployees() {
+    //Show All Employees
+    this.dataService.getAllEmployees().subscribe(data => {
+      this.employeeList = data;
+    });
   }
 
   //when the add new employee button is clicked
@@ -71,6 +82,7 @@ export class EmployeeListComponent implements OnInit {
       this.message = data;
       console.log('Below is the actual message');
       console.log(this.message);
+      this.getAllEmployees();
     });
 
     this.addEmployeeForm.reset();
