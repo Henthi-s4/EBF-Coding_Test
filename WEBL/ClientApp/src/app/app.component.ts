@@ -14,21 +14,6 @@ export class AppComponent implements OnInit {
   companyList;
   salary;
 
-  //newEmployee: Employee = {
-  //  employeeId: 12,
-  //  name: 'John',
-  //  surname: 'Doe',
-  //  email: 'john@test.com',
-  //  address: '25 Mystery Lane',
-  //  salary: 19000,
-  //  companyId: 1
-  //};
-
-  //newCompany: Company = {
-  //  companyId: 2,
-  //  name: 'XYZ Logistics'
-  //};
-
   constructor(private dataService: DataService) {
 
   }

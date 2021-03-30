@@ -25,10 +25,10 @@ export class EmployeeComponent implements OnInit {
   message;
 
   buttonOptions = {
-    text: "Update",
-    type: "success",
+    text: 'Update',
+    type: 'success',
     useSubmitBehavior: true
-  }
+  };
 
   labelLocation: string;
   minColWidth: number;
@@ -43,7 +43,7 @@ export class EmployeeComponent implements OnInit {
     //Find the employee's company to display
     this.dataService.getAllCompanies().subscribe(data => {
       this.companyList = data;
-      let curCompany = this.companyList.find(i => i.companyId === this.employee.companyId);
+      const curCompany = this.companyList.find(i => i.companyId === this.employee.companyId);
       this.curCompanyName = curCompany.name;
     });
 
@@ -63,13 +63,13 @@ export class EmployeeComponent implements OnInit {
     //Find All Companies
     this.dataService.getAllCompanies().subscribe(data => {
       this.companyList = data;
-      console.log(this.companyList)
+      console.log(this.companyList);
 
       //populate to display
       this.companyList.forEach((element) => {
         this.companyNameList.push(element.name);
-
       });
+
     });
 
   }
@@ -80,11 +80,8 @@ export class EmployeeComponent implements OnInit {
   onFormSubmit() {
 
     this.companyName = String(this.employee.companyId);
-    let curComp = this.companyList.find(i => i.name === this.companyName);
+    const curComp = this.companyList.find(i => i.name === this.companyName);
     this.employee.companyId = curComp.companyId;
-
-    console.log('what we will be sending to database');
-    console.log(this.employee);
 
     //Update Existing Employee
     this.dataService.updateEmployee(this.employee).subscribe(data => {
@@ -93,12 +90,12 @@ export class EmployeeComponent implements OnInit {
 
       this.popupVisible = false;
       notify({
-        message: "You have submitted the form",
+        message: 'You have submitted the form',
         position: {
-          my: "center top",
-          at: "center top"
+          my: 'center top',
+          at: 'center top'
         }
-      }, "success", 3000);
+      }, 'success', 3000);
 
     });
 
@@ -108,14 +105,14 @@ export class EmployeeComponent implements OnInit {
     Ask user for confirmation of deletion of employee
    */
   deleteConfirmation(name: string, surname: string) {
-    if (confirm("Are you sure to delete " + name + ' ' + surname)) {
+    if (confirm('Are you sure to delete ' + name + ' ' + surname)) {
       //Delete Existing Employee
       this.dataService.deleteEmployee(this.employee.employeeId).subscribe(data => {
         this.message = data;
         console.log(this.message);
           //Show All Employees
-          this.dataService.getAllEmployees().subscribe(data => {
-            this.employeeList = data;
+          this.dataService.getAllEmployees().subscribe(empData => {
+            this.employeeList = empData;
           });
       });
     }

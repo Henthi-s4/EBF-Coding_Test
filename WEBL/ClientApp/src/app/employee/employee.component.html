@@ -15,9 +15,9 @@
 </a>
 
 <dx-popup [width]="800"
-          [height]="500"
+          [height]="350"
           [showTitle]="true"
-          title="Add New Employee"
+          title="Update Employee"
           [dragEnabled]="false"
           [closeOnOutsideClick]="true"
           [(visible)]="popupVisible">
@@ -34,26 +34,51 @@
                [width]="width">
 
         <dxi-item dataField="companyId" editorType="dxSelectBox" [editorOptions]="{ items: companyNameList, searchEnabled: true, value: '' }">
-          <dxi-validation-rule type="required" message="Position is required"></dxi-validation-rule>
+          <dxi-validation-rule type="required"
+                               message="Company is required">
+          </dxi-validation-rule>
+          <dxi-validation-rule type="stringLength"
+                               [min]="2"
+                               message="Select a company">
+          </dxi-validation-rule>
           <dxo-label text="Company Name">
           </dxo-label>
         </dxi-item>
 
         <dxi-item dataField="employeeId" [editorOptions]="{ disabled: true }"></dxi-item>
+
         <dxi-item dataField="name" [editorOptions]="{ disabled: false }">
-          <dxi-validation-rule type="required" message="Name is required"></dxi-validation-rule>
+          <dxi-validation-rule type="required"
+                               message="Name is required">
+
+          </dxi-validation-rule>
         </dxi-item>
+
         <dxi-item dataField="surname" [editorOptions]="{ disabled: false }">
-          <dxi-validation-rule type="required" message="Surname is required"></dxi-validation-rule>
+          <dxi-validation-rule type="required"
+                               message="Surname is required">
+          </dxi-validation-rule>
         </dxi-item>
+
         <dxi-item dataField="email" [editorOptions]="{ disabled: false }">
-          <dxi-validation-rule type="required" message="Email is required"></dxi-validation-rule>
+          <dxi-validation-rule type="required"
+                               message="Email is required">
+          </dxi-validation-rule>
+          <dxi-validation-rule type="email"
+                               message="Email is invalid">
+          </dxi-validation-rule>
         </dxi-item>
+
         <dxi-item dataField="address" [editorOptions]="{ disabled: false }">
-          <dxi-validation-rule type="required" message="Address is required"></dxi-validation-rule>
+          <dxi-validation-rule type="required"
+                               message="Address is required">
+          </dxi-validation-rule>
         </dxi-item>
+
         <dxi-item dataField="salary" [editorOptions]="{ disabled: false }">
-          <dxi-validation-rule type="required" message="Salary is required"></dxi-validation-rule>
+          <dxi-validation-rule type="required"
+                               message="Salary is required">
+          </dxi-validation-rule>
         </dxi-item>
 
         <dxi-item itemType="button"
