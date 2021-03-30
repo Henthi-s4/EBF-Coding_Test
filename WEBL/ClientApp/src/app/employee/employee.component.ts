@@ -3,12 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Company } from '../../../../Models/company.model';
 import { Employee } from '../../../../Models/employee.model';
 import { DataService } from '../data.service';
-import {
-  DxCheckBoxModule,
-  DxSelectBoxModule,
-  DxNumberBoxModule,
-  DxFormModule
-} from 'devextreme-angular';
+import notify from 'devextreme/ui/notify';
+import { DxCheckBoxModule, DxSelectBoxModule, DxNumberBoxModule, DxFormModule, DxButtonModule, DxFormComponent} from 'devextreme-angular';
 
 @Component({
   selector: 'app-employee',
@@ -20,13 +16,19 @@ export class EmployeeComponent implements OnInit {
   @Input() employee: Employee;
   companyList: Company[];
   companyNameList: string[] = [];
-  updateEmployeeForm: FormGroup;
+  companyName: string;
+
+  updateEmployeeForm: DxFormComponent;
   popupVisible = false;
   message;
 
+  buttonOptions = {
+    text: "Update",
+    type: "success",
+    useSubmitBehavior: true
+  }
+
   labelLocation: string;
-  readOnly: boolean;
-  showColon: boolean;
   minColWidth: number;
   colCount: number;
   width: any;
@@ -41,7 +43,9 @@ export class EmployeeComponent implements OnInit {
 
   }
 
-  //button clicked to open popup
+  /*
+    button clicked to open popup
+   */
   updateNewEmployee() {
     this.popupVisible = true;
     console.log(this.employee);
@@ -54,32 +58,40 @@ export class EmployeeComponent implements OnInit {
       //populate to display
       this.companyList.forEach((element) => {
         this.companyNameList.push(element.name);
-      });
 
-      console.log(this.companyNameList);
+      });
     });
 
   }
 
-  //when the user submits the updated employee
-  submitEmployee() {
+  /*
+    When the form is being submitted
+   */
+  onFormSubmit() {
 
-    //change values to the updated values
-    this.employee.name = this.updateEmployeeForm.value.name;
-    this.employee.surname = this.updateEmployeeForm.value.surname;
-    this.employee.email = this.updateEmployeeForm.value.email;
-    this.employee.address = this.updateEmployeeForm.value.homeAddress;
-    this.employee.salary = this.updateEmployeeForm.value.salary;
-    this.employee.companyId = +this.updateEmployeeForm.value.companyId;
+    this.companyName = String(this.employee.companyId);
+    let curComp = this.companyList.find(i => i.name === this.companyName);
+    this.employee.companyId = curComp.companyId;
 
+    console.log('what we will be sending to database');
+    console.log(this.employee);
+
+    //Update Existing Employee
     this.dataService.updateEmployee(this.employee).subscribe(data => {
       this.message = data;
-      console.log('Below is the actual message');
       console.log(this.message);
+
+      this.popupVisible = false;
+      notify({
+        message: "You have submitted the form",
+        position: {
+          my: "center top",
+          at: "center top"
+        }
+      }, "success", 3000);
+
     });
 
-    this.updateEmployeeForm.reset();
-    this.popupVisible = false;
-
   }
+
 }

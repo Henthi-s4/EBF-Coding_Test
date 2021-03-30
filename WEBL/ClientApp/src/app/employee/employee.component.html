@@ -25,30 +25,49 @@
           [closeOnOutsideClick]="true"
           [(visible)]="popupVisible">
 
-  <div id="updateEmployeeForm">
+  <form action="your-action" (submit)="onFormSubmit()">
 
-    <dx-form id="form"
-             [formData]="employee"
-             [labelLocation]="labelLocation"
-             [minColWidth]="minColWidth"
-             [colCount]="colCount"
-             [width]="width">
+    <div id="form">
 
-      <dxi-item dataField="comanpyId" editorType="dxSelectBox" [editorOptions]="{ items: companyNameList, searchEnabled: true, value: '' }">
-        <dxi-validation-rule type="required" message="Position is required"></dxi-validation-rule>
-      </dxi-item>
+      <dx-form id="updateEmployeeForm"
+               [formData]="employee"
+               [labelLocation]="labelLocation"
+               [minColWidth]="minColWidth"
+               [colCount]="colCount"
+               [width]="width">
 
-      <dxi-item dataField="employeeId" [editorOptions]="{ disabled: true }"></dxi-item>
-      <dxi-item dataField="name" [editorOptions]="{ disabled: false }">
-        <dxi-validation-rule type="required" message="Name is required"></dxi-validation-rule>
-      </dxi-item>
-      <dxi-item dataField="surname" [editorOptions]="{ disabled: false }"></dxi-item>
-      <dxi-item dataField="email" [editorOptions]="{ disabled: false }"></dxi-item>
-      <dxi-item dataField="address" [editorOptions]="{ disabled: false }"></dxi-item>
-      <dxi-item dataField="salary" [editorOptions]="{ disabled: false }"></dxi-item>
+        <dxi-item dataField="companyId" editorType="dxSelectBox" [editorOptions]="{ items: companyNameList, searchEnabled: true, value: '' }">
+          <dxi-validation-rule type="required" message="Position is required"></dxi-validation-rule>
+          <dxo-label text="Company Name">
+          </dxo-label>
+        </dxi-item>
 
-    </dx-form>
+        <dxi-item dataField="employeeId" [editorOptions]="{ disabled: true }"></dxi-item>
+        <dxi-item dataField="name" [editorOptions]="{ disabled: false }">
+          <dxi-validation-rule type="required" message="Name is required"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="surname" [editorOptions]="{ disabled: false }">
+          <dxi-validation-rule type="required" message="Surname is required"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="email" [editorOptions]="{ disabled: false }">
+          <dxi-validation-rule type="required" message="Email is required"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="address" [editorOptions]="{ disabled: false }">
+          <dxi-validation-rule type="required" message="Address is required"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="salary" [editorOptions]="{ disabled: false }">
+          <dxi-validation-rule type="required" message="Salary is required"></dxi-validation-rule>
+        </dxi-item>
 
-  </div>
+        <dxi-item itemType="button"
+                  horizontalAlignment="center"
+                  [buttonOptions]="buttonOptions">
+        </dxi-item>
+
+      </dx-form>
+
+    </div>
+
+  </form>
 
 </dx-popup>

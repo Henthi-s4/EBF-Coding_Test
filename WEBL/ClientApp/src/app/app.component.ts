@@ -24,10 +24,10 @@ export class AppComponent implements OnInit {
   //  companyId: 1
   //};
 
-  newCompany: Company = {
-    companyId: 2,
-    name: 'XYZ Logistics'
-  };
+  //newCompany: Company = {
+  //  companyId: 2,
+  //  name: 'XYZ Logistics'
+  //};
 
   constructor(private dataService: DataService) {
 
