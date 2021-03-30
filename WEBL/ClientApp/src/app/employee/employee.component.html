@@ -1,6 +1,7 @@
 <a style="cursor: pointer"
    class="list-group-item clearfix">
   <div class="pull-left">
+    <p class="list-group-item-heading">Company name: {{ curCompanyName }} </p>
     <p class="list-group-item-heading">{{ employee.employeeId }}.  {{ employee.name }}  {{ employee.surname }} | Salary: {{ employee.salary | currency }}</p>
     <p class="list-group-item-heading">Address: {{ employee.address }} | Email: {{ employee.email }}</p>
 

@@ -16,6 +16,7 @@ export class EmployeeComponent implements OnInit {
   @Input() employee: Employee;
   companyList: Company[];
   companyNameList: string[] = [];
+  curCompanyName: string;
   companyName: string;
   employeeList: Employee[];
 
@@ -38,6 +39,14 @@ export class EmployeeComponent implements OnInit {
     this.labelLocation = 'top';
     this.minColWidth = 500;
     this.colCount = 2;
+
+    //Find the employee's company to display
+    this.dataService.getAllCompanies().subscribe(data => {
+      this.companyList = data;
+      let curCompany = this.companyList.find(i => i.companyId === this.employee.companyId);
+      this.curCompanyName = curCompany.name;
+    });
+
   }
 
   ngOnInit() {
