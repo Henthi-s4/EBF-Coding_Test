@@ -32,15 +32,6 @@ export class EmployeeListComponent implements OnInit {
   };
 
   employee: Employee;
-  //{
-  //  employeeId: 0,
-  //  name: '',
-  //  surname: '',
-  //  email: '',
-  //  address: '',
-  //  salary: 0,
-  //  companyId: 0
-  //};
 
   constructor(private dataService: DataService) {
     this.labelLocation = 'top';

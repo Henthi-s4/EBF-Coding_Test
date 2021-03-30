@@ -55,6 +55,7 @@ export class DataService {
   addEmployee(employee) {
 
     return this.http.post<any>(this.baseUrl + 'api/addEmployee', employee).pipe(map(data => {
+      this.emitDelete.emit('added');
       return data;
     }));
 

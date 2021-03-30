@@ -18,6 +18,8 @@ import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxPopupModule } from 'devextreme-angular/ui/popup';
 import { DxTemplateModule } from 'devextreme-angular/core';
 import { DxCheckBoxModule, DxFormModule, DxNumberBoxModule, DxSelectBoxModule } from 'devextreme-angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -47,11 +49,13 @@ import { DxCheckBoxModule, DxFormModule, DxNumberBoxModule, DxSelectBoxModule } 
     DxNumberBoxModule,
     DxFormModule,
     NgbModule,
+    MatGridListModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
