@@ -20,9 +20,11 @@ export class EmployeeComponent implements OnInit {
   companyName: string;
   employeeList: Employee[];
 
-  updateEmployeeForm: DxFormComponent;
+  labelLocation: string;
+  minColWidth: number;
+  colCount: number;
+  width: any;
   popupVisible = false;
-  message;
 
   buttonOptions = {
     text: 'Update',
@@ -30,11 +32,11 @@ export class EmployeeComponent implements OnInit {
     useSubmitBehavior: true
   };
 
-  labelLocation: string;
-  minColWidth: number;
-  colCount: number;
-  width: any;
-
+  //////////////////////////////////////////////
+  /*
+    Constructor
+      Used to set the dataService and to set the defualt values for the form and fetch the employee's company
+   */
   constructor(private dataService: DataService) {
     this.labelLocation = 'top';
     this.minColWidth = 500;
@@ -49,12 +51,18 @@ export class EmployeeComponent implements OnInit {
 
   }
 
+  //////////////////////////////////////////////
+  /*
+    Code to be executed as soon as the component is initialised
+   */
   ngOnInit() {
 
   }
 
+  //////////////////////////////////////////////
   /*
-    button clicked to open popup
+    The update employee was clicked
+      Find the company's id associated with the company's name for the employee to be updated
    */
   updateNewEmployee() {
     this.popupVisible = true;
@@ -74,49 +82,53 @@ export class EmployeeComponent implements OnInit {
 
   }
 
+  //////////////////////////////////////////////
   /*
-    When the form is being submitted
+    Update employee to be added to the database
+      Called by the form (popup) - update the employee and call the API call to update our employee's details
    */
   onFormSubmit() {
 
+    this.popupVisible = false;
     this.companyName = String(this.employee.companyId);
     const curComp = this.companyList.find(i => i.name === this.companyName);
     this.employee.companyId = curComp.companyId;
 
     //Update Existing Employee
     this.dataService.updateEmployee(this.employee).subscribe(data => {
-      this.message = data;
-      console.log(this.message);
+      const message = data;
+      console.log(message);
 
-      this.popupVisible = false;
       notify({
         message: 'You have submitted the form',
         position: {
           my: 'center top',
           at: 'center top'
         }
-      }, 'success', 3000);
+      }, 'success', 1000);
 
     });
 
   }
 
+  //////////////////////////////////////////////
   /*
-    Ask user for confirmation of deletion of employee
+    Create a confirmation popup
+      Ask the user if the employee should be deleted and delete if confirmed
    */
   deleteConfirmation(name: string, surname: string) {
+
     if (confirm('Are you sure to delete ' + name + ' ' + surname)) {
       //Delete Existing Employee
       this.dataService.deleteEmployee(this.employee.employeeId).subscribe(data => {
-        this.message = data;
-        console.log(this.message);
-          //Show All Employees
-          this.dataService.getAllEmployees().subscribe(empData => {
-            this.employeeList = empData;
-          });
+        const message = data;
+        console.log(message);
+        //Show All Employees
+        this.dataService.getAllEmployees().subscribe(empData => {
+          this.employeeList = empData;
+        });
       });
     }
   }
-
 
 }

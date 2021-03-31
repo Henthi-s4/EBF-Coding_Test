@@ -10,8 +10,13 @@ export class DataService {
 
   private baseUrl: string;
   employeeList;
-  @Output() emitDelete = new EventEmitter();
+  @Output() emitChange = new EventEmitter();
 
+  //////////////////////////////////////////////
+  /*
+    Constructor
+      Used to set the baseUrl for our API calls
+   */
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.baseUrl = baseUrl;
   }
@@ -55,7 +60,7 @@ export class DataService {
   addEmployee(employee) {
 
     return this.http.post<any>(this.baseUrl + 'api/addEmployee', employee).pipe(map(data => {
-      this.emitDelete.emit('added');
+      this.emitChange.emit('added');
       return data;
     }));
 
@@ -70,6 +75,7 @@ export class DataService {
   updateEmployee(employee) {
 
     return this.http.put<any>(this.baseUrl + 'api/updateEmployee', employee).pipe(map(data => {
+      this.emitChange.emit('updated');
       return data;
     }));
 
@@ -84,7 +90,7 @@ export class DataService {
   deleteEmployee(employeeId) {
 
     return this.http.delete<any>(this.baseUrl + 'api/deleteEmployee' + '?employeeId=' + employeeId).pipe(map(data => {
-      this.emitDelete.emit('deleted');
+      this.emitChange.emit('deleted');
       return data;
     }));
 

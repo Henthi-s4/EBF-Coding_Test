@@ -15,9 +15,8 @@ import dxForm from 'devextreme/ui/form';
 })
 export class EmployeeListComponent implements OnInit {
 
+  employee: Employee;
   employeeList: Employee[];
-  popupVisible = false;
-  currentEmployee: Employee;
   companyList: Company[];
   companyNameList: string[] = [];
 
@@ -25,25 +24,34 @@ export class EmployeeListComponent implements OnInit {
   minColWidth: number;
   colCount: number;
   width: any;
+  popupVisible = false;
+
   buttonOptions = {
     text: 'Create',
     type: 'success',
     useSubmitBehavior: true
   };
 
-  employee: Employee;
-
+  //////////////////////////////////////////////
+  /*
+    Constructor
+      Used to set the dataService and to set the defualt values for the form
+   */
   constructor(private dataService: DataService) {
     this.labelLocation = 'top';
     this.minColWidth = 500;
     this.colCount = 2;
   }
 
+  //////////////////////////////////////////////
+  /*
+    Code to be executed as soon as the component is initialised
+      We get all the employees, companies and we subsribe to the event emitter
+   */
   ngOnInit() {
 
     this.getAllEmployees();
 
-    //Find All Companies
     this.dataService.getAllCompanies().subscribe(data => {
       this.companyList = data;
 
@@ -54,8 +62,8 @@ export class EmployeeListComponent implements OnInit {
 
     });
 
-    //subscribe to the emitDelete event emitter
-    this.dataService.emitDelete.subscribe(data => {
+    //subscribe to the emitChange event emitter
+    this.dataService.emitChange.subscribe(data => {
       const message = data;
       console.log(message);
       this.getAllEmployees();
@@ -63,14 +71,22 @@ export class EmployeeListComponent implements OnInit {
 
   }
 
+  //////////////////////////////////////////////
+  /*
+    Function to call the API call to fetch all employees
+      Used to show all the employees
+   */
   getAllEmployees() {
-    //Show All Employees
     this.dataService.getAllEmployees().subscribe(data => {
       this.employeeList = data;
     });
   }
 
-  //when the add new employee button is clicked
+  //////////////////////////////////////////////
+  /*
+    The add new new employee button was clicked
+      here we set the defualt values
+   */
   addNewEmployee() {
     this.popupVisible = true;
     this.employee = {
@@ -84,25 +100,26 @@ export class EmployeeListComponent implements OnInit {
     };
   }
 
+  //////////////////////////////////////////////
   /*
     Submit employee to be added to the database
       Called by the form (popup)
    */
   submitEmployee() {
 
+    this.popupVisible = false;
     const companyName = String(this.employee.companyId);
     const curComp = this.companyList.find(i => i.name === companyName);
     this.employee.companyId = curComp.companyId;
     console.log(this.employee);
 
-    //Add A New Employee
+    //Add the new employee
     this.dataService.addEmployee(this.employee).subscribe(data => {
       const message = data;
       console.log(message);
 
-      this.popupVisible = false;
       notify({
-        message: 'You have submitted the form',
+        message: 'The employee was added successfully',
         position: {
           my: 'center top',
           at: 'center top'

@@ -1,18 +1,16 @@
-<a style="cursor: pointer"
-   class="list-group-item clearfix">
-  <div class="pull-left">
-    <p class="list-group-item-heading">Company name: {{ curCompanyName }} </p>
-    <p class="list-group-item-heading">{{ employee.employeeId }}.  {{ employee.name }}  {{ employee.surname }} | Salary: {{ employee.salary | currency }}</p>
-    <p class="list-group-item-heading">Address: {{ employee.address }} | Email: {{ employee.email }}</p>
+<div class="pull-left list-group-item clearfix" id="tile">
+  <h1 class="list-group-item-heading">{{ curCompanyName }} </h1>
+  <p class="list-group-item-heading">{{ employee.name }}  {{ employee.surname }} | Salary: {{ employee.salary | currency }}</p>
+  <p class="list-group-item-heading">Address: {{ employee.address }}</p>
+  <p class="list-group-item-heading">Email: {{ employee.email }}</p>
 
-    <dx-button class="button-primary"
-               (click)="updateNewEmployee()"
-               text="Update"
-               style="margin: 4px">
-    </dx-button>
-    <button type=button class="btn btn-danger" (click)="deleteConfirmation(employee.name, employee.surname)">Delete me</button>
-  </div>
-</a>
+  <dx-button class="button-primary"
+             (click)="updateNewEmployee()"
+             text="Update"
+             style="margin: 4px">
+  </dx-button>
+  <button type=button class="btn btn-danger" (click)="deleteConfirmation(employee.name, employee.surname)">Delete me</button>
+</div>
 
 <dx-popup [width]="800"
           [height]="350"

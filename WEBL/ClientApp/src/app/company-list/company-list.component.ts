@@ -11,11 +11,20 @@ export class CompanyListComponent implements OnInit {
 
   companyList: Company[];
 
+  //////////////////////////////////////////////
+  /*
+    Constructor
+      Used to set the dataService and to set the defualt values for the form
+   */
   constructor(private dataService: DataService) {
   }
 
+  //////////////////////////////////////////////
+  /*
+    Code to be executed as soon as the component is initialised
+      We fetch all of the companies
+   */
   ngOnInit() {
-    //Find All Companies
     this.dataService.getAllCompanies().subscribe(data => {
       this.companyList = data;
     });
