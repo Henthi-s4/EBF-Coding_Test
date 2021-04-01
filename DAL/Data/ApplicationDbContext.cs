@@ -20,5 +20,6 @@ namespace DAL.Data
 
         public DbSet<Company> Company { get; set; }
 
+   
     }
 }

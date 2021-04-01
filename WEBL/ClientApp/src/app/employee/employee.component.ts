@@ -42,7 +42,7 @@ export class EmployeeComponent implements OnInit {
     this.minColWidth = 500;
     this.colCount = 2;
 
-    //Find the employee's company to display
+    // Find the employee's company to display
     this.dataService.getAllCompanies().subscribe(data => {
       this.companyList = data;
       const curCompany = this.companyList.find(i => i.companyId === this.employee.companyId);
@@ -68,12 +68,12 @@ export class EmployeeComponent implements OnInit {
     this.popupVisible = true;
     console.log(this.employee);
 
-    //Find All Companies
+    // Find All Companies
     this.dataService.getAllCompanies().subscribe(data => {
       this.companyList = data;
       console.log(this.companyList);
 
-      //populate to display
+      // populate to display
       this.companyList.forEach((element) => {
         this.companyNameList.push(element.name);
       });
@@ -94,7 +94,7 @@ export class EmployeeComponent implements OnInit {
     const curComp = this.companyList.find(i => i.name === this.companyName);
     this.employee.companyId = curComp.companyId;
 
-    //Update Existing Employee
+    // Update Existing Employee
     this.dataService.updateEmployee(this.employee).subscribe(data => {
       const message = data;
       console.log(message);
@@ -119,11 +119,11 @@ export class EmployeeComponent implements OnInit {
   deleteConfirmation(name: string, surname: string) {
 
     if (confirm('Are you sure to delete ' + name + ' ' + surname)) {
-      //Delete Existing Employee
+      // Delete Existing Employee
       this.dataService.deleteEmployee(this.employee.employeeId).subscribe(data => {
         const message = data;
         console.log(message);
-        //Show All Employees
+        // Show All Employees
         this.dataService.getAllEmployees().subscribe(empData => {
           this.employeeList = empData;
         });

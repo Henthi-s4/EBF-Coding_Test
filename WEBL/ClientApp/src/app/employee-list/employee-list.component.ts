@@ -55,14 +55,14 @@ export class EmployeeListComponent implements OnInit {
     this.dataService.getAllCompanies().subscribe(data => {
       this.companyList = data;
 
-      //populate to display
+      // populate to display
       this.companyList.forEach((element) => {
         this.companyNameList.push(element.name);
       });
 
     });
 
-    //subscribe to the emitChange event emitter
+    // subscribe to the emitChange event emitter
     this.dataService.emitChange.subscribe(data => {
       const message = data;
       console.log(message);
@@ -113,7 +113,7 @@ export class EmployeeListComponent implements OnInit {
     this.employee.companyId = curComp.companyId;
     console.log(this.employee);
 
-    //Add the new employee
+    // Add the new employee
     this.dataService.addEmployee(this.employee).subscribe(data => {
       const message = data;
       console.log(message);
@@ -130,5 +130,3 @@ export class EmployeeListComponent implements OnInit {
   }
 
 }
-
-
