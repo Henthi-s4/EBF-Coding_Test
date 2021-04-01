@@ -5,7 +5,7 @@ Employee Storage Service
 
 This project is a full stack project that was developed in Angular for the front-end and .NET Core for the back-end. 
 To develop this project I used Visual Studio 2019 as it allowed me to seamlessly work with Angular and .NET Core at the same time.
-The REST APIs are based in C# and a SQL Server database is being used to store the database for this project. The .docx file named
+The REST APIs are based in C# and a SQL Server database is being used to store the database for this project. The pdf file named
 'ESS_Henthi_Huisamen_Test_Cases' was used to test my backend.
 
 Within the database we have two tables, the Employee table and the Company table. The relationship is one-to-many, this means
@@ -24,9 +24,9 @@ steps to follow. This has been tested on multiple PCs.
 To setup the solution you will need Visual Studio 2019 and follow these easy steps
 
 1. Click on the solution file at the root of the repository named EmployeeStorageService.sln
-2. While that loads, you can start with restoring the database. For this you need to open the .docx file named 'Database_Restore.docx' 
+2. While that loads, you can start with restoring the database. For this you need to open the pdf file named 'Database_Restore' 
    at the root of the repository.
-3. In the .docx file it will show you where to get the 'connection string' we need for step 4.
+3. In the pdf file it will show you where to get the 'connection string' we need for step 4.
 4. In the Solution Explorer go to WEBL and open it, click on 'appsettings.json' to open the file.
 5. You will see a "DefaultConnection", in this you need to delete 'Server=PCPLZ-3-173\\MSSQLSERVER01' and replace it with 
    your 'connection string'.
