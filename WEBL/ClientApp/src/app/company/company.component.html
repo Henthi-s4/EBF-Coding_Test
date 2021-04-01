@@ -1,7 +1,7 @@
 <a style="cursor: pointer"
    class="list-group-item clearfix"
-   id="tile">
-   <!--(click)="displayEmployees()"-->
+   id="tile"
+   (click)="displayEmployees()">
   <div class="pull-left">
     <h1 class="list-group-item-heading">{{ company.name }}</h1>
     <p class="list-group-item-heading">Average Salary: {{ salary | currency }}</p>

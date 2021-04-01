@@ -1,16 +1,24 @@
 <div class="row pull-right">
   <div class="col-xs-15">
     <hr />
+
+    <button type=button
+            class="btn btn-primary"
+            (click)="getAllEmployees()">
+      View All Employees
+    </button>
+    <br />
+    <br />
     <dx-button class="button-info"
                (click)="addNewEmployee()"
                text="Add New Employee">
     </dx-button>
     <br />
     <br />
-      <app-employee style="float: left"
-         id="employComp"
-         *ngFor="let emp of employeeList" [employee]="emp">
-      </app-employee>
+    <app-employee style="float: left"
+                  id="employComp"
+                  *ngFor="let emp of employeeList" [employee]="emp">
+    </app-employee>
   </div>
 </div>
 

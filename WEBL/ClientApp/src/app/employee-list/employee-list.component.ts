@@ -62,6 +62,13 @@ export class EmployeeListComponent implements OnInit {
 
     });
 
+    // subscribe to the emitCompany event emitter for company clicked
+    this.dataService.emitCompany.subscribe(data => {
+      const message = data;
+      console.log(message);
+      this.getAllEmployeesForCompany(message);
+    });
+
     // subscribe to the emitChange event emitter
     this.dataService.emitChange.subscribe(data => {
       const message = data;
@@ -79,6 +86,18 @@ export class EmployeeListComponent implements OnInit {
   getAllEmployees() {
     this.dataService.getAllEmployees().subscribe(data => {
       this.employeeList = data;
+    });
+  }
+
+  //////////////////////////////////////////////
+  /*
+    Function to call the API call to fetch all employees for a company
+      Used to show all the employees for a company
+   */
+  getAllEmployeesForCompany(companyId: number) {
+    this.dataService.getAllEmployeesForCompany(companyId).subscribe(data => {
+      this.employeeList = data;
+      console.log(this.employeeList);
     });
   }
 
@@ -129,4 +148,12 @@ export class EmployeeListComponent implements OnInit {
 
   }
 
+  //////////////////////////////////////////////
+  /*
+    View all employees were clicked
+      called by the user when clicked and ensures all employees are visible again
+   */
+  viewAllEmployees() {
+    this.getAllEmployees();
+  }
 }

@@ -11,7 +11,7 @@ export class CompanyComponent implements OnInit {
 
   @Input() company: Company;
   salary: number;
-  /*companyList: Company[];*/
+  companyList: Company[];
 
   //////////////////////////////////////////////
   /*
@@ -30,7 +30,7 @@ export class CompanyComponent implements OnInit {
   ngOnInit() {
 
     this.getAverageSalary();
-    //subscribe to the emitChange event emitter
+    // subscribe to the emitChange event emitter
     this.dataService.emitChange.subscribe(data => {
       const message = data;
       console.log(message);
@@ -50,12 +50,13 @@ export class CompanyComponent implements OnInit {
     });
   }
 
-  //displayEmployees() {
-  //  this.dataService.getAllEmployeesForCompany(this.company.companyId).subscribe(data => {
-  //    this.companyList = data;
-  //    console.log('The list of employees for company ' + this.company.name);
-  //    console.log(this.companyList);
-  //  });
-  //}
+  //////////////////////////////////////////////
+  /*
+    Function to send the company's id to ensure the company's employees are shown
+      Used to ensure that we can fetch the data from the database correctly (searched by company id)
+   */
+  displayEmployees() {
+    this.dataService.sendCompanyClicked(this.company.companyId);
+  }
 
 }

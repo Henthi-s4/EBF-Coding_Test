@@ -11,6 +11,7 @@ export class DataService {
   private baseUrl: string;
   employeeList;
   @Output() emitChange = new EventEmitter();
+  @Output() emitCompany = new EventEmitter();
 
   //////////////////////////////////////////////
   /*
@@ -132,6 +133,15 @@ export class DataService {
     return this.http.get<any>(this.baseUrl + 'api/getAllEmployeesForCompany' + '?companyId=' + companyId).pipe(map(data => {
       return data;
     }));
+  }
+
+  ///////////////////////////////////////////
+  /*
+      Notify the employee-list component which company's employees need to be displayed
+              emit the companyId of company clicked
+  */
+  sendCompanyClicked(companyId: number) {
+    this.emitCompany.emit(companyId);
   }
 
 }
