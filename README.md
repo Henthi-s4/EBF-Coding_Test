@@ -5,7 +5,8 @@ Employee Storage Service
 
 This project is a full stack project that was developed in Angular for the front-end and .NET Core for the back-end. 
 To develop this project I used Visual Studio 2019 as it allowed me to seamlessly work with Angular and .NET Core at the same time.
-The REST APIs are based in C# and a SQL Server database is being used to store the database for this project.
+The REST APIs are based in C# and a SQL Server database is being used to store the database for this project. The .docx file named
+'ESS_Henthi_Huisamen_Test_Cases' was used to test my backend.
 
 Within the database we have two tables, the Employee table and the Company table. The relationship is one-to-many, this means
 that an employee can only be associated with one company, but a single company can be associated with many employees.
